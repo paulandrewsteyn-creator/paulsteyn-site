@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
-    <loc>https://www.paulsteyn.com/</loc>
+    <loc>https://paulsteyn.com/</loc>
     <lastmod>2026-09-09</lastmod>
-    <image:image><image:loc>https://www.paulsteyn.com/images/paul-steyn-portrait.jpg</image:loc><image:title>Paul Steyn</image:title></image:image>
+    <image:image><image:loc>https://paulsteyn.com/images/paul-steyn-portrait.jpg</image:loc><image:title>Paul Steyn</image:title></image:image>
   </url>
 </urlset>

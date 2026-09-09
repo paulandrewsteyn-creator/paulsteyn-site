@@ -1,13 +1,7 @@
 # paulsteyn.com — static site, no build step
+# Primary domain (paulsteyn.com) and www redirect are managed in Netlify Domain management.
 [build]
   publish = "."
-
-# Canonical host is www.paulsteyn.com (matches <link rel="canonical"> in index.html)
-[[redirects]]
-  from = "https://paulsteyn.com/*"
-  to = "https://www.paulsteyn.com/:splat"
-  status = 301
-  force = true
 
 [[headers]]
   for = "/*"
