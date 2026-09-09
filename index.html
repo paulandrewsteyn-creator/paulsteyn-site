@@ -25,11 +25,11 @@
 <meta name="twitter:site" content="@paulsteynless">
 <meta name="twitter:creator" content="@paulsteynless">
 
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%231C1C1A'/%3E%3Ctext x='16' y='22' font-family='Georgia,serif' font-size='17' fill='%23FBFAF7' text-anchor='middle'%3EPS%3C/text%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23191814'/%3E%3Ctext x='16' y='23' font-family='Georgia,serif' font-size='18' fill='%23F7F6F2' text-anchor='middle'%3EPS%3C/text%3E%3C/svg%3E">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..500&display=swap">
 
 <!-- Structured data: tells search engines which Paul Steyn this is -->
 <script type="application/ld+json">
@@ -93,205 +93,369 @@
 
 <style>
   :root {
-    --paper: #FBFAF7;
-    --ink: #1C1C1A;
-    --slate: #5F5E59;
-    --hair: #DAD8D0;
-    --accent: #2E5A4C;
-    --serif: "Source Serif 4", "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
-    --mono: "IBM Plex Mono", "SF Mono", Menlo, Consolas, monospace;
+    --paper:  #F7F6F2;
+    --ink:    #191814;
+    --muted:  #6E6A61;
+    --hair:   #DFDCD3;
+    --text:   "Newsreader", "Iowan Old Style", Georgia, "Times New Roman", serif;
+    --util:   "Archivo", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    --shell:  54rem;
+    --measure: 33rem;
+    --gutter: clamp(1.25rem, 5vw, 2.75rem);
   }
   @media (prefers-color-scheme: dark) {
-    :root {
-      --paper: #171716;
-      --ink: #ECEAE3;
-      --slate: #A19F97;
-      --hair: #33332F;
-      --accent: #8FBFAC;
+    :root:not([data-theme="light"]) {
+      --paper: #141311; --ink: #EAE7DF; --muted: #9C978C; --hair: #33312C;
     }
   }
+  :root[data-theme="dark"] {
+    --paper: #141311; --ink: #EAE7DF; --muted: #9C978C; --hair: #33312C;
+  }
+
   * { box-sizing: border-box; }
   html { -webkit-text-size-adjust: 100%; }
   body {
     margin: 0;
     background: var(--paper);
     color: var(--ink);
-    font-family: var(--serif);
-    font-size: 1.125rem;
+    font-family: var(--text);
+    font-optical-sizing: auto;
+    font-size: 1.0625rem;
     line-height: 1.6;
-    font-variation-settings: "opsz" 18;
+    font-weight: 380;
+    -webkit-font-smoothing: antialiased;
   }
-  a { color: var(--accent); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 0.18em; }
-  a:hover { text-decoration-thickness: 2px; }
-  a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
-  img { max-width: 100%; height: auto; display: block; }
+  img { display: block; max-width: 100%; height: auto; }
 
-  .page {
-    max-width: 44rem;
-    margin: 0 auto;
-    padding: clamp(1.5rem, 4vw, 3.5rem) clamp(1.25rem, 5vw, 2.5rem) 5rem;
+  /* ---- grid: one shell, prose held to a reading measure inside it ----- */
+  .col {
+    max-width: var(--shell);
+    margin-inline: auto;
+    padding-inline: var(--gutter);
   }
-  .hero { margin: 0 0 3rem; }
-  @media (min-width: 60rem) { .hero { margin-left: -6rem; margin-right: -6rem; } }
-  .hero img { width: 100%; aspect-ratio: 2000/915; object-fit: cover; }
-  .hero figcaption { font-family: var(--mono); font-size: 0.72rem; color: var(--slate); margin-top: 0.6rem; letter-spacing: 0.02em; }
-  header { margin-bottom: 3.5rem; }
-  h1 {
-    font-size: clamp(2rem, 4.5vw, 2.75rem);
-    font-weight: 600;
-    line-height: 1.1;
-    letter-spacing: -0.01em;
-    margin: 0 0 0.6rem;
-    font-variation-settings: "opsz" 60;
-    text-wrap: balance;
+  .measure { max-width: var(--measure); }
+
+  /* ---- masthead ------------------------------------------------------ */
+  .masthead { padding-block: clamp(2.75rem, 8vw, 4.5rem) clamp(1.75rem, 5vw, 2.75rem); }
+  .name {
+    margin: 0;
+    font-size: clamp(2.9rem, 10vw, 5rem);
+    font-variation-settings: "opsz" 72;
+    font-weight: 400;
+    line-height: 0.95;
+    letter-spacing: -0.022em;
   }
   .role {
-    margin: 0;
-    font-family: var(--mono);
-    font-size: 0.8rem;
-    letter-spacing: 0.04em;
-    color: var(--slate);
-  }
-  .role span::before { content: "·"; margin: 0 0.5em; }
-
-  .intro { display: grid; grid-template-columns: 1fr; gap: 2rem; align-items: start; margin-bottom: 4rem; }
-  @media (min-width: 40rem) { .intro { grid-template-columns: 1fr 12rem; gap: 3rem; } }
-  .intro p { margin: 0 0 1.1em; max-width: 34em; }
-  .intro p:last-child { margin-bottom: 0; }
-  .portrait { grid-row: 1; }
-  @media (min-width: 40rem) { .portrait { grid-column: 2; } }
-  .portrait img { width: 100%; aspect-ratio: 4/5; object-fit: cover; }
-  .portrait figcaption, .stills figcaption {
-    font-family: var(--mono); font-size: 0.72rem; color: var(--slate); margin-top: 0.5rem; letter-spacing: 0.02em;
-  }
-
-  section { margin-bottom: 4rem; }
-  h2 {
-    font-family: var(--mono);
+    margin: clamp(0.9rem, 2.5vw, 1.25rem) 0 0;
+    font-family: var(--util);
+    font-size: 0.735rem;
     font-weight: 500;
-    font-size: 0.75rem;
-    letter-spacing: 0.12em;
+    letter-spacing: 0.135em;
     text-transform: uppercase;
-    color: var(--slate);
-    margin: 0 0 1.5rem;
-    padding-top: 1rem;
-    border-top: 1px solid var(--hair);
+    color: var(--ink);
+    line-height: 1.65;
   }
-  section p { max-width: 34em; margin: 0 0 1.1em; }
-  section p:last-child { margin-bottom: 0; }
+  .role span { display: block; color: var(--muted); font-weight: 400; }
 
-  .work { list-style: none; margin: 0; padding: 0; display: grid; gap: 1.25rem; }
-  .work li { display: grid; gap: 0.2rem; max-width: 34em; }
-  .work a { color: var(--ink); text-decoration-color: var(--hair); }
-  .work a:hover { text-decoration-color: var(--accent); }
-  .work .meta { font-family: var(--mono); font-size: 0.75rem; color: var(--slate); letter-spacing: 0.02em; }
-  .more { margin-top: 1.5rem; font-size: 0.95rem; }
+  /* ---- full-bleed plate ---------------------------------------------- */
+  .plate { margin: 0; }
+  .plate img {
+    width: 100%;
+    aspect-ratio: 3 / 2;
+    object-fit: cover;
+    object-position: 50% 40%;
+  }
+  @media (min-width: 46rem) { .plate img { aspect-ratio: 21 / 9; } }
+  .plate figcaption, .strip figcaption {
+    font-family: var(--util);
+    font-size: 0.7rem;
+    letter-spacing: 0.055em;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+  .plate figcaption {
+    max-width: var(--shell);
+    margin: 0.7rem auto 0;
+    padding-inline: var(--gutter);
+  }
 
-  .stills { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem; margin: 2.5rem 0 0; padding: 0; }
-  .stills figure { margin: 0; }
-  .stills img { width: 100%; aspect-ratio: 3/2; object-fit: cover; }
-  @media (max-width: 30rem) { .stills { grid-template-columns: 1fr; } }
+  /* ---- prose --------------------------------------------------------- */
+  .lede { padding-block: clamp(2.5rem, 7vw, 3.75rem) 0; }
+  p { margin: 0 0 1.05em; }
+  p:last-child { margin-bottom: 0; }
+  .lede p:first-child {
+    font-size: 1.23rem;
+    line-height: 1.48;
+    font-weight: 350;
+    letter-spacing: -0.004em;
+  }
 
-  .now { border-left: 2px solid var(--accent); padding-left: 1rem; }
+  a { color: inherit; text-decoration: none; }
+  .lede a, .prose a, .after a, .contact a {
+    background-image: linear-gradient(var(--hair), var(--hair));
+    background-repeat: no-repeat;
+    background-position: 0 100%;
+    background-size: 100% 1px;
+    padding-bottom: 0.08em;
+  }
+  .lede a:hover, .prose a:hover, .after a:hover, .contact a:hover {
+    background-image: linear-gradient(currentColor, currentColor);
+  }
+  a:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; border-radius: 1px; }
 
+  .now {
+    margin-top: clamp(1.6rem, 4vw, 2.25rem);
+    padding-top: 1.05rem;
+    border-top: 1px solid var(--hair);
+    font-style: italic;
+    color: var(--muted);
+  }
+  .now b {
+    font-family: var(--util);
+    font-style: normal;
+    font-weight: 500;
+    font-size: 0.67rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink);
+    margin-right: 0.8em;
+    white-space: nowrap;
+  }
+
+  /* ---- sections ------------------------------------------------------ */
+  section { padding-block: clamp(2.75rem, 8vw, 4.5rem) 0; }
+  h2 {
+    margin: 0 0 clamp(1.25rem, 3.5vw, 1.75rem);
+    font-size: 1.05rem;
+    font-weight: 400;
+    font-style: italic;
+    color: var(--muted);
+  }
+
+  /* ---- work list ----------------------------------------------------- */
+  .work { list-style: none; margin: 0; padding: 0; }
+  .work li { border-top: 1px solid var(--hair); }
+  .work li:last-child { border-bottom: 1px solid var(--hair); }
+  .work a {
+    display: grid;
+    grid-template-columns: 3rem 1fr;
+    gap: 0 1rem;
+    padding: 0.9rem 0;
+    align-items: baseline;
+  }
+  @media (min-width: 34rem) { .work a { grid-template-columns: 4.5rem 1fr; padding-block: 1.15rem; } }
+  .work .yr {
+    font-family: var(--util);
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    color: var(--muted);
+    font-variant-numeric: tabular-nums;
+    padding-top: 0.4em;
+  }
+  .work .ttl {
+    font-size: 1.14rem;
+    line-height: 1.3;
+    text-wrap: pretty;
+    letter-spacing: -0.006em;
+  }
+  .work .pub {
+    display: block;
+    margin-top: 0.3rem;
+    font-family: var(--util);
+    font-size: 0.715rem;
+    letter-spacing: 0.04em;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+  .work a:hover .ttl {
+    background-image: linear-gradient(currentColor, currentColor);
+    background-repeat: no-repeat; background-position: 0 100%; background-size: 100% 1px;
+  }
+  .work a:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+  .after { margin-top: 1.3rem; font-size: 0.95rem; color: var(--muted); }
+
+  /* ---- filmstrip ------------------------------------------------------ */
+  .strip {
+    margin: clamp(1.9rem, 5vw, 2.75rem) 0 0;
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: 76%;
+    gap: 0.6rem;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+    padding-inline: var(--gutter);
+    padding-bottom: 0.25rem;
+  }
+  .strip figure { margin: 0; scroll-snap-align: start; }
+  .strip img { width: 100%; aspect-ratio: 3 / 2; object-fit: cover; }
+  .strip figcaption { margin-top: 0.55rem; }
+  @media (min-width: 46rem) {
+    .strip {
+      grid-auto-flow: row;
+      grid-template-columns: repeat(3, 1fr);
+      grid-auto-columns: auto;
+      gap: 0.7rem;
+      overflow: visible;
+      max-width: var(--shell);
+      margin-inline: auto;
+    }
+  }
+
+  /* ---- background + portrait ------------------------------------------ */
+  .bio { display: grid; gap: clamp(1.5rem, 4vw, 2rem); }
+  @media (min-width: 42rem) {
+    .bio { grid-template-columns: minmax(0,1fr) 12rem; align-items: start; gap: 3rem; }
+    .bio .measure { max-width: none; }
+  }
+  .bio figure { margin: 0; }
+  .bio img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; }
+  @media (max-width: 41.99rem) { .bio figure { max-width: 10.5rem; } }
+
+  /* ---- contact -------------------------------------------------------- */
+  .contact { padding-bottom: clamp(2.75rem, 7vw, 4rem); }
+  .mail {
+    display: inline-block;
+    font-size: clamp(1.35rem, 5vw, 1.85rem);
+    font-variation-settings: "opsz" 40;
+    letter-spacing: -0.012em;
+    line-height: 1.25;
+    word-break: break-word;
+  }
+  .contact .note { margin-top: 0.9rem; color: var(--muted); font-size: 0.95rem; }
+
+  /* ---- footer --------------------------------------------------------- */
   footer {
     border-top: 1px solid var(--hair);
-    padding-top: 1.5rem;
-    display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.75rem 2rem;
-    font-family: var(--mono); font-size: 0.78rem; color: var(--slate); letter-spacing: 0.02em;
+    padding-block: 1.4rem clamp(2.25rem, 6vw, 3rem);
+    font-family: var(--util);
+    font-size: 0.695rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    display: flex; flex-wrap: wrap; gap: 0.35rem 2rem; justify-content: space-between;
   }
-  footer a { color: var(--ink); }
+
   @media (prefers-reduced-motion: no-preference) {
-    a { transition: text-decoration-thickness 120ms ease; }
+    .work .ttl, .lede a, .prose a, .after a, .contact a { transition: background-size 140ms ease; }
   }
 </style>
 </head>
 
 <body>
-<main class="page">
+<main>
 
-  <figure class="hero">
-    <img src="images/paul-steyn-national-geographic-expedition.jpg" alt="Paul Steyn with the National Geographic Society expedition team, holding the Society flag at a camp in the Okavango Delta" width="2000" height="915" fetchpriority="high">
-    <figcaption>With the National Geographic Society expedition team, Okavango Delta</figcaption>
-  </figure>
-
-  <header>
-    <h1>Paul Steyn</h1>
-    <p class="role">Writer, journalist and documentary filmmaker<span>Cape Town, South Africa</span></p>
+  <header class="masthead col">
+    <h1 class="name">Paul Steyn</h1>
+    <p class="role">Writer, journalist &amp; documentary&nbsp;filmmaker<span>Cape Town, South Africa</span></p>
   </header>
 
-  <div class="intro">
-    <div>
-      <p>Paul Steyn writes and makes films about wildlife, conservation, and the people caught up in both — mostly in Africa. For more than a decade he has been a regular contributor to <a href="https://www.nationalgeographic.com/" rel="noopener">National Geographic</a>, reporting from the Okavango Delta, the Zambezi Delta, Kruger National Park and the eastern Congo.</p>
-      <p>He directs and edits non-fiction, and is drawn to patient, character-led stories: the caregiver as much as the chimp, the chief as much as the lion.</p>
-      <p class="now">Paul is currently in post-production on a feature documentary.</p>
-    </div>
-    <figure class="portrait">
-      <img src="images/paul-steyn-portrait.jpg" alt="Paul Steyn, South African writer, journalist and documentary filmmaker" width="900" height="1125">
-    </figure>
-  </div>
+  <figure class="plate">
+    <img src="images/paul-steyn-national-geographic-expedition.jpg"
+         alt="Paul Steyn with the National Geographic Society expedition team, holding the Society flag at a field camp"
+         width="2000" height="914" fetchpriority="high">
+    <figcaption>With the National Geographic Society expedition team</figcaption>
+  </figure>
+
+  <div class="lede col"><div class="measure">
+    <p>Paul Steyn writes and makes films about wildlife, conservation, and the people caught up in both — mostly in Africa. For more than a decade he has been a regular contributor to <a href="https://www.nationalgeographic.com/" rel="noopener">National Geographic</a>, reporting from the Okavango Delta, the Zambezi Delta, Kruger National Park and the eastern Congo.</p>
+    <p>He directs and edits non-fiction, and is drawn to patient, character-led stories: the caregiver as much as the chimp, the chief as much as the lion.</p>
+    <p class="now"><b>Now</b>In post-production on a feature documentary.</p>
+  </div></div>
 
   <section id="writing" aria-labelledby="writing-h">
-    <h2 id="writing-h">Selected writing for National Geographic</h2>
-    <ul class="work">
-      <li>
-        <a href="https://www.nationalgeographic.com/magazine/article/central-african-sanctuary-gives-hope-to-chimpsand-their-rescuers-feature" rel="noopener">Central African sanctuary gives hope to chimps—and their rescuers</a>
-        <span class="meta">National Geographic Magazine · September 2021 · Photographs by Brent Stirton</span>
-      </li>
-      <li>
-        <a href="https://www.nationalgeographic.com/animals/article/texan-hounds-fight-rhino-poaching" rel="noopener">Texas hounds chase down rhino poachers in South Africa</a>
-        <span class="meta">National Geographic · September 2019</span>
-      </li>
-      <li>
-        <a href="https://www.nationalgeographic.com/animals/article/mozambique-spirit-lion-relocation" rel="noopener">How the world's largest lion relocation was pulled off</a>
-        <span class="meta">National Geographic · May 2019</span>
-      </li>
-      <li>
-        <a href="https://www.nationalgeographic.com/animals/article/140904-elephant-census-botswana-okavango-poaching-ivory-africa-science" rel="noopener">Counting elephants from the air in Africa's newest World Heritage Site</a>
-        <span class="meta">National Geographic · September 2014</span>
-      </li>
-      <li>
-        <a href="https://www.nationalgeographic.com/travel/article/i-heart-my-city-pauls-johannesburg" rel="noopener">Paul's Johannesburg</a>
-        <span class="meta">National Geographic Travel · May 2014</span>
-      </li>
-    </ul>
-    <p class="more">A fuller archive of Paul Steyn's journalism is on <a href="https://muckrack.com/paul-steyn" rel="noopener">Muck Rack</a>.</p>
+    <div class="col">
+      <h2 id="writing-h">Selected writing for National Geographic</h2>
+      <ol class="work">
+        <li>
+          <a href="https://www.nationalgeographic.com/magazine/article/central-african-sanctuary-gives-hope-to-chimpsand-their-rescuers-feature" rel="noopener">
+            <span class="yr">2021</span>
+            <span><span class="ttl">Central African sanctuary gives hope to chimps—and their rescuers</span><span class="pub">National Geographic Magazine · Photographs by Brent Stirton</span></span>
+          </a>
+        </li>
+        <li>
+          <a href="https://www.nationalgeographic.com/animals/article/texan-hounds-fight-rhino-poaching" rel="noopener">
+            <span class="yr">2019</span>
+            <span><span class="ttl">Texas hounds chase down rhino poachers in South Africa</span><span class="pub">National Geographic</span></span>
+          </a>
+        </li>
+        <li>
+          <a href="https://www.nationalgeographic.com/animals/article/mozambique-spirit-lion-relocation" rel="noopener">
+            <span class="yr">2019</span>
+            <span><span class="ttl">How the world's largest lion relocation was pulled off</span><span class="pub">National Geographic</span></span>
+          </a>
+        </li>
+        <li>
+          <a href="https://www.nationalgeographic.com/animals/article/140904-elephant-census-botswana-okavango-poaching-ivory-africa-science" rel="noopener">
+            <span class="yr">2014</span>
+            <span><span class="ttl">Counting elephants from the air in Africa's newest World Heritage Site</span><span class="pub">National Geographic</span></span>
+          </a>
+        </li>
+        <li>
+          <a href="https://www.nationalgeographic.com/travel/article/i-heart-my-city-pauls-johannesburg" rel="noopener">
+            <span class="yr">2014</span>
+            <span><span class="ttl">Paul's Johannesburg</span><span class="pub">National Geographic Travel</span></span>
+          </a>
+        </li>
+      </ol>
+      <p class="after">A fuller archive of Paul Steyn's journalism is on <a href="https://muckrack.com/paul-steyn" rel="noopener">Muck Rack</a>.</p>
+    </div>
   </section>
 
   <section id="film" aria-labelledby="film-h">
-    <h2 id="film-h">Film</h2>
-    <p>Paul's film work grew out of the reporting. The same stories he was writing — a sanctuary in the Congo, a lion relocation in Mozambique — asked to be told with a camera, and over time he moved from writing about the people doing the work to sitting in the edit with their footage.</p>
-    <p>He directs and edits long-form non-fiction and ongoing series work, from field shoot through to fine cut, grade and music. The feature documentary he is finishing now is the culmination of several years of that.</p>
-    <div class="stills">
+    <div class="col prose">
+      <h2 id="film-h">Film</h2>
+      <div class="measure">
+      <p>Paul's film work grew out of the reporting. The same stories he was writing — a sanctuary in the Congo, a lion relocation in Mozambique — asked to be told with a camera, and over time he moved from writing about the people doing the work to sitting in the edit with their footage.</p>
+      <p>He directs and edits long-form non-fiction and ongoing series work, from field shoot through to fine cut, grade and music. The feature documentary he is finishing now is the culmination of several years of that.</p>
+      </div>
+    </div>
+    <div class="strip">
       <figure>
-        <img src="images/paul-steyn-chimpanzee-rescue-flight.jpg" alt="Rescued chimpanzee on a flight to a sanctuary" width="960" height="640" loading="lazy">
+        <img src="images/paul-steyn-chimpanzee-rescue-flight.jpg" alt="A rescued chimpanzee held in the cockpit of a light aircraft during a flight to a sanctuary" width="960" height="640" loading="lazy">
         <figcaption>Rescue flight</figcaption>
       </figure>
       <figure>
-        <img src="images/paul-steyn-okavango-delta-elephants.jpg" alt="Elephant herd crossing a floodplain in the Okavango Delta" width="800" height="533" loading="lazy">
+        <img src="images/paul-steyn-okavango-delta-elephants.jpg" alt="A herd of elephants crossing a floodplain in the Okavango Delta" width="800" height="533" loading="lazy">
         <figcaption>Okavango Delta</figcaption>
       </figure>
       <figure>
-        <img src="images/paul-steyn-desert-field-still.jpg" alt="Field still: a hand holding a stone tool against a desert sky" width="1600" height="1066" loading="lazy">
+        <img src="images/paul-steyn-desert-field-still.jpg" alt="A hand holding a stone tool against a desert sky" width="1600" height="1066" loading="lazy">
         <figcaption>In the field</figcaption>
       </figure>
     </div>
   </section>
 
   <section id="background" aria-labelledby="background-h">
-    <h2 id="background-h">Background</h2>
-    <p>Before journalism, Paul Steyn guided across southern Africa and edited a travel magazine. In 2013 he crossed the Okavango Delta by mokoro on a 250-kilometre research expedition with Bayei polers and scientists; in 2014 he flew aerial survey transects with Elephants Without Borders for the Great Elephant Census. That fieldwork is still where most of his stories start.</p>
+    <div class="col prose">
+      <h2 id="background-h">Background</h2>
+      <div class="bio">
+        <div class="measure">
+          <p>Before journalism, Paul Steyn guided across southern Africa and edited a travel magazine. In 2013 he crossed the Okavango Delta by mokoro on a 250-kilometre research expedition with Bayei polers and scientists; in 2014 he flew aerial survey transects with Elephants Without Borders for the Great Elephant Census. That fieldwork is still where most of his stories start.</p>
+        </div>
+        <figure>
+          <img src="images/paul-steyn-portrait.jpg" alt="Portrait of Paul Steyn" width="900" height="1125" loading="lazy">
+        </figure>
+      </div>
+    </div>
   </section>
 
-  <section id="contact" aria-labelledby="contact-h">
-    <h2 id="contact-h">Contact</h2>
-    <p>Commissions, collaborations and screening enquiries: <a href="mailto:paul@paulsteyn.com">paul@paulsteyn.com</a></p>
+  <section id="contact" class="contact" aria-labelledby="contact-h">
+    <div class="col">
+      <h2 id="contact-h">Contact</h2>
+      <a class="mail" href="mailto:paul@paulsteyn.com">paul@paulsteyn.com</a>
+      <p class="note measure">Commissions, collaborations and screening enquiries.</p>
+    </div>
   </section>
 
-  <footer>
-    <span>© 2026 Paul Steyn</span>
-    <span>Cape Town, South Africa</span>
-  </footer>
+  <div class="col">
+    <footer>
+      <span>© 2026 Paul Steyn</span>
+      <span>Cape Town, South Africa</span>
+    </footer>
+  </div>
 
 </main>
 </body>
