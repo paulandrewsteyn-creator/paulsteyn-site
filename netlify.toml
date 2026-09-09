@@ -1,0 +1,22 @@
+# paulsteyn.com — static site, no build step
+[build]
+  publish = "."
+
+# Canonical host is www.paulsteyn.com (matches <link rel="canonical"> in index.html)
+[[redirects]]
+  from = "https://paulsteyn.com/*"
+  to = "https://www.paulsteyn.com/:splat"
+  status = 301
+  force = true
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "DENY"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+
+[[headers]]
+  for = "/images/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
