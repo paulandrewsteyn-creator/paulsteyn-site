@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.paulsteyn.com/sitemap.xml
+Sitemap: https://paulsteyn.com/sitemap.xml
